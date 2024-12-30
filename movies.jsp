@@ -97,6 +97,51 @@
             </form>
         </div>
 
+        <!-- Update Form -->
+        <% 
+            String editMovieId = request.getParameter("edit_movie_id");
+            if (editMovieId != null) {
+                try {
+                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/movies_db", "root", "");
+                    PreparedStatement stmt = conn.prepareStatement("SELECT * FROM movies WHERE id = ?");
+                    stmt.setInt(1, Integer.parseInt(editMovieId));
+                    ResultSet rs = stmt.executeQuery();
+                    if (rs.next()) {
+        %>
+        <div class="my-4">
+            <form method="POST" action="movies.jsp">
+                <div class="row">
+                    <input type="hidden" name="id" value="<%= rs.getInt("id") %>">
+                    <div class="col-md-3">
+                        <input type="text" name="title" class="form-control bg-dark text-white" value="<%= rs.getString("title") %>" required>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" name="genre" class="form-control bg-dark text-white" value="<%= rs.getString("genre") %>" required>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="number" name="duration" class="form-control bg-dark text-white" value="<%= rs.getInt("duration") %>" required>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" name="poster_url" class="form-control bg-dark text-white" value="<%= rs.getString("poster_url") %>" required>
+                    </div>
+                    <div class="col-md-6 mt-2">
+                        <textarea name="synopsis" class="form-control bg-dark text-white" rows="2" required><%= rs.getString("synopsis") %></textarea>
+                    </div>
+                    <div class="col-md-2 mt-2">
+                        <button type="submit" name="action" value="update" class="btn btn-success w-100">Update Movie</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <% 
+                    }
+                    conn.close();
+                } catch (SQLException e) {
+                    out.println("<p class='text-danger'>Error: " + e.getMessage() + "</p>");
+                }
+            }
+        %>
+
         <div class="row">
             <%
                 Connection conn = null;
@@ -126,12 +171,22 @@
                             PreparedStatement stmt = conn.prepareStatement("DELETE FROM movies WHERE id = ?");
                             stmt.setInt(1, id);
                             stmt.executeUpdate();
-                        } else if ("add_to_history".equals(action)) {
-                            int movieId = Integer.parseInt(request.getParameter("id"));
+                        } else if ("update".equals(action)) {
+                            int id = Integer.parseInt(request.getParameter("id"));
+                            String title = request.getParameter("title");
+                            String genre = request.getParameter("genre");
+                            int duration = Integer.parseInt(request.getParameter("duration"));
+                            String posterUrl = request.getParameter("poster_url");
+                            String synopsis = request.getParameter("synopsis");
+
                             PreparedStatement stmt = conn.prepareStatement(
-                                "INSERT INTO user_watch_history (user_id, movie_id) VALUES (?, ?)");
-                            stmt.setInt(1, userId);
-                            stmt.setInt(2, movieId);
+                                "UPDATE movies SET title = ?, genre = ?, duration = ?, poster_url = ?, synopsis = ? WHERE id = ?");
+                            stmt.setString(1, title);
+                            stmt.setString(2, genre);
+                            stmt.setInt(3, duration);
+                            stmt.setString(4, posterUrl);
+                            stmt.setString(5, synopsis);
+                            stmt.setInt(6, id);
                             stmt.executeUpdate();
                         }
                     }
@@ -157,6 +212,7 @@
                                 <input type="hidden" name="id" value="<%= rs.getInt("id") %>">
                                 <button type="submit" name="action" value="delete" class="btn btn-danger btn-sm">Delete</button>
                             </form>
+                            <a href="movies.jsp?edit_movie_id=<%= rs.getInt("id") %>" class="btn btn-warning btn-sm">Edit</a>
                         </div>
                     </div>
                 </div>
