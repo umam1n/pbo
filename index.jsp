@@ -1,6 +1,6 @@
 <%-- 
     Document   : index
-    Created on : 31 Dec 2024, 5:13:35?am
+    Created on : 31 Dec 2024, 5:13:35 am
     Author     : umaml
 --%>
 
@@ -14,13 +14,61 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #121212;
+            color: #ffffff;
         }
         .container {
             margin-top: 100px;
+            background-color: #1e1e1e;
+            border-radius: 15px;
+            padding: 20px;
         }
         .card {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #292929;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        .card h4 {
+            color: #f1f1f1;
+        }
+        .card p {
+            color: #b0b0b0;
+        }
+        .btn {
+            border-radius: 5px;
+            padding: 12px;
+        }
+        .btn-primary {
+            background-color: #6200ea;
+            border-color: #6200ea;
+        }
+        .btn-primary:hover {
+            background-color: #3700b3;
+            border-color: #3700b3;
+        }
+        .btn-secondary {
+            background-color: #03dac5;
+            border-color: #03dac5;
+        }
+        .btn-secondary:hover {
+            background-color: #018786;
+            border-color: #018786;
+        }
+        .btn-success {
+            background-color: #388e3c;
+            border-color: #388e3c;
+        }
+        .btn-success:hover {
+            background-color: #2c6c2f;
+            border-color: #2c6c2f;
+        }
+        .btn-danger {
+            background-color: #d32f2f;
+            border-color: #d32f2f;
+        }
+        .btn-danger:hover {
+            background-color: #9a0007;
+            border-color: #9a0007;
         }
     </style>
 </head>
