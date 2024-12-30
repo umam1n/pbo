@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2024 at 11:27 PM
+-- Generation Time: Dec 31, 2024 at 12:18 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,7 +42,7 @@ CREATE TABLE `movies` (
 
 INSERT INTO `movies` (`id`, `title`, `genre`, `duration`, `poster_url`, `synopsis`) VALUES
 (1, 'The Shawshank Redemption', 'Drama', 142, 'https://via.placeholder.com/150?text=Shawshank', 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.'),
-(2, 'The Godfather', 'Crime, Drama', 175, 'https://via.placeholder.com/150?text=Godfather', 'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.'),
+(2, 'The Godfather', 'Crime, Drama', 175, 'https://resizing.flixster.com/9KjAgFsQic55HwYqIDTP_BajqOA=/620x336/v2/https://statcdn.fandango.com/MPX/image/NBCU_Fandango/422/535/thumb_8DDE349D-3FE0-43FA-B851-B29436A6E7B7.jpg', 'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.'),
 (3, 'The Dark Knight', 'Action, Crime, Drama', 152, 'https://via.placeholder.com/150?text=Dark+Knight', 'When the menace known as the Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.'),
 (4, 'Inception', 'Action, Adventure, Sci-Fi', 148, 'https://via.placeholder.com/150?text=Inception', 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.'),
 (5, 'Fight Club', 'Drama', 139, 'https://via.placeholder.com/150?text=Fight+Club', 'An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into much more.'),
@@ -71,16 +71,17 @@ INSERT INTO `movies` (`id`, `title`, `genre`, `duration`, `poster_url`, `synopsi
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `role` enum('admin','user') NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`) VALUES
-(1, 'user1', 'password123'),
-(2, 'admin', 'adminpass');
+INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
+(1, 'user1', 'password123', 'user'),
+(2, 'admin', 'adminpass', 'admin');
 
 -- --------------------------------------------------------
 
