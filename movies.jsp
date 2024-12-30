@@ -46,9 +46,10 @@
             font-weight: bold;
         }
         .btn {
-            background-color: #007bff;
-            color: #ffffff;
+            background-color: #f5c518;
+            color: #121212;
             border: none;
+            font-weight: bold;
         }
         .btn:hover {
             background-color: #0056b3;
