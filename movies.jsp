@@ -60,6 +60,12 @@
         .btn-danger:hover {
             background-color: #a71d2a;
         }
+        /* Ensure placeholder text is bright yellow */
+        input::placeholder,
+        textarea::placeholder {
+            color: #f5c518 !important; /* Bright yellow for contrast */
+            opacity: 1; /* Ensure the color is solid */
+        }
     </style>
 </head>
 <body>
@@ -70,19 +76,19 @@
             <form method="POST" action="movies.jsp">
                 <div class="row">
                     <div class="col-md-3">
-                        <input type="text" name="title" class="form-control bg-dark text-white" placeholder="Movie Title" required>
+                        <input type="text" name="title" class="form-control bg-dark text-white" placeholder="Enter Movie Title" required>
                     </div>
                     <div class="col-md-3">
-                        <input type="text" name="genre" class="form-control bg-dark text-white" placeholder="Genre (comma-separated)" required>
+                        <input type="text" name="genre" class="form-control bg-dark text-white" placeholder="Enter Genre (comma-separated)" required>
                     </div>
                     <div class="col-md-2">
-                        <input type="number" name="duration" class="form-control bg-dark text-white" placeholder="Duration (mins)" required>
+                        <input type="number" name="duration" class="form-control bg-dark text-white" placeholder="Enter Duration in minutes" required>
                     </div>
                     <div class="col-md-3">
-                        <input type="text" name="poster_url" class="form-control bg-dark text-white" placeholder="Poster URL" required>
+                        <input type="text" name="poster_url" class="form-control bg-dark text-white" placeholder="Enter Poster URL" required>
                     </div>
                     <div class="col-md-6 mt-2">
-                        <textarea name="synopsis" class="form-control bg-dark text-white" placeholder="Synopsis" rows="2" required></textarea>
+                        <textarea name="synopsis" class="form-control bg-dark text-white" placeholder="Enter Synopsis of the Movie" rows="2" required></textarea>
                     </div>
                     <div class="col-md-2 mt-2">
                         <button type="submit" name="action" value="add" class="btn btn-success w-100">Add Movie</button>
