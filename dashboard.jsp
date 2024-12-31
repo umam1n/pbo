@@ -1,12 +1,15 @@
 <%-- 
     Document   : dashboard
-    Created on : 31 Dec 2024, 5:05:16 am
+    Created on : 31 Dec 2024, 5:05:16?am
     Author     : umaml
 --%>
 
 <%@ page import="java.sql.*" %>
 <%
     Integer userId = (Integer) session.getAttribute("userId");
+    String username = (String) session.getAttribute("username");
+    String role = (String) session.getAttribute("role");
+
     if (userId == null) {
         response.sendRedirect("login.jsp");
     }
@@ -79,11 +82,16 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome, <%= session.getAttribute("username") %></h1>
+        <h1>Welcome, <%= username %></h1>
+        <p class="text-center">Role: <%= role %></p>
         <div class="action-buttons">
-            <a href="recommend.jsp" class="btn btn-primary btn-lg">Get Recommendations</a>
-            <a href="watch_history.jsp" class="btn btn-secondary btn-lg">View Watch History</a>
-            <a href="movies.jsp" class="btn btn-success btn-lg">Manage Movies</a>
+            <% if ("admin".equals(role)) { %>
+                <a href="movies_admin.jsp" class="btn btn-primary btn-lg">Manage Movies</a>
+            <% } else { %>
+                <a href="movies_user.jsp" class="btn btn-primary btn-lg">Browse Movies</a>
+                <a href="watch_history.jsp" class="btn btn-secondary btn-lg">View Watch History</a>
+                <a href="recommend.jsp" class="btn btn-success btn-lg">Get Recommendations</a>
+            <% } %>
             <a href="logout.jsp" class="btn btn-danger btn-lg">Logout</a>
         </div>
     </div>
